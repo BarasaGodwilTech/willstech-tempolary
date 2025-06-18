@@ -321,19 +321,47 @@
     </section>
 
     <!-- Email Signup -->
-    <!-- In your landing page, around line 150: -->
-<section id="notify" class="features" style="background: var(--gray);">
+    <!-- === HTML === -->
+<section id="notify" class="features" style="background: var(--gray); text-align: center;">
   <h2>Get Notified When We Launch!</h2>
-  <div class="form-container">
+  
+  <!-- 1. "Notify Me" Button (Visible) -->
+  <button id="show-form-btn" class="btn btn-primary">
+    Notify Me
+  </button>
+
+  <!-- 2. Google Form (Hidden Initially) -->
+  <div id="google-form-container" style="display: none; max-width: 600px; margin: 20px auto;">
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJbLXNxghRFZSjUhkgKzpMRBmf8rIak9Hk1e0W-c3ovrK2xQ/viewform?embedded=true" 
             width="100%" 
-            height="500px" 
+            height="600px" 
             frameborder="0" 
-            style="border: none;">
-      Loading…
+            style="border: none; border-radius: 12px;">
     </iframe>
+    <button id="hide-form-btn" class="btn btn-outline" style="margin-top: 15px;">
+      Close Form
+    </button>
   </div>
 </section>
+
+<!-- === JavaScript === -->
+<script>
+  const showBtn = document.getElementById("show-form-btn");
+  const hideBtn = document.getElementById("hide-form-btn");
+  const formContainer = document.getElementById("google-form-container");
+
+  // Show form when "Notify Me" is clicked
+  showBtn.addEventListener("click", () => {
+    formContainer.style.display = "block";
+    showBtn.style.display = "none"; // Hide the "Notify Me" button
+  });
+
+  // Hide form when "Close Form" is clicked
+  hideBtn.addEventListener("click", () => {
+    formContainer.style.display = "none";
+    showBtn.style.display = "inline-block"; // Show the button again
+  });
+</script>
 
     <!-- Footer -->
     <footer>
