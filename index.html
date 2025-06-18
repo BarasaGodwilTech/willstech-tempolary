@@ -37,7 +37,16 @@
             padding: 1rem 2rem;
             text-align: center;
         }
-        
+
+        .logoi {
+            width: 63px;
+            height: 63px; 
+            border-radius: 100px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.685);
+            position: relative; /* Ensures the logo stays on top */
+            z-index: 2; /* Higher z-index to keep the logo above the text */
+            text-align: center; /* Center the logo */
+        }
         .logo {
             font-size: 2rem;
             font-weight: 700;
@@ -223,6 +232,7 @@
 <body>
     <!-- Header -->
     <header>
+          <a href="#"><img src="images/logo.svg" class="logoi" alt="Will's Tech Store Logo"></a>
         <div class="logo"Will's<span>Tech</span></div>
         <p>Uganda's Premier Tech Destination</p>
     </header>
