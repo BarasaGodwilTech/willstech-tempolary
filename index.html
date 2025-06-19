@@ -321,24 +321,27 @@
     </section>
 
     <!-- Email Signup -->
-    <!-- === HTML === -->
-<section id="notify" class="features" style="background: var(--gray); text-align: center;">
+        <!-- === HTML === -->
+<section id="notify" class="features" style="background: var(--gray); text-align: center; padding: 2rem 1rem;">
   <h2>Get Notified When We Launch!</h2>
   
-  <!-- 1. "Notify Me" Button (Visible) -->
+  <!-- Toggle Button -->
   <button id="show-form-btn" class="btn btn-primary">
     Notify Me
   </button>
 
-  <!-- 2. Google Form (Hidden Initially) -->
-  <div id="google-form-container" style="display: none; max-width: 600px; margin: 20px auto;">
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJbLXNxghRFZSjUhkgKzpMRBmf8rIak9Hk1e0W-c3ovrK2xQ/viewform?embedded=true" 
+  <!-- Google Form Container (Hidden by Default) -->
+  <div id="google-form-container" style="display: none; width: 100%; margin: 1rem auto;">
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfJbLXNxghRFZSjUhkgKzpMRBmf8rIak9Hk1e0W-c3ovrK2xQ" 
             width="100%" 
-            height="600px" 
+            height="600" 
             frameborder="0" 
-            style="border: none; border-radius: 12px;">
+            marginheight="0" 
+            marginwidth="0"
+            style="border: none; min-height: 600px;">
+      Loading…
     </iframe>
-    <button id="hide-form-btn" class="btn btn-outline" style="margin-top: 15px;">
+    <button id="hide-form-btn" class="btn btn-outline" style="margin-top: 1rem;">
       Close Form
     </button>
   </div>
@@ -346,22 +349,35 @@
 
 <!-- === JavaScript === -->
 <script>
-  const showBtn = document.getElementById("show-form-btn");
-  const hideBtn = document.getElementById("hide-form-btn");
-  const formContainer = document.getElementById("google-form-container");
-
-  // Show form when "Notify Me" is clicked
-  showBtn.addEventListener("click", () => {
-    formContainer.style.display = "block";
-    showBtn.style.display = "none"; // Hide the "Notify Me" button
+  document.getElementById("show-form-btn").addEventListener("click", function() {
+    document.getElementById("google-form-container").style.display = "block";
+    this.style.display = "none";
   });
 
-  // Hide form when "Close Form" is clicked
-  hideBtn.addEventListener("click", () => {
-    formContainer.style.display = "none";
-    showBtn.style.display = "inline-block"; // Show the button again
+  document.getElementById("hide-form-btn").addEventListener("click", function() {
+    document.getElementById("google-form-container").style.display = "none";
+    document.getElementById("show-form-btn").style.display = "inline-block";
   });
 </script>
+
+<!-- === Critical CSS Fix === -->
+<style>
+  /* Force Google Form to show header/mobile compatibility */
+  iframe {
+    display: block !important; /* Override any hiding */
+    overflow: scroll !important; /* Fix mobile clipping */
+  }
+  
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    #google-form-container {
+      height: auto;
+    }
+    iframe {
+      min-height: 800px !important; /* Extra space for mobile form */
+    }
+  }
+</style>
 
     <!-- Footer -->
     <footer>
