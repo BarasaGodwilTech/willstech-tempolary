@@ -3,9 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Will's Tech Store - Coming Soon</title>
-    <meta name="description" content="Uganda's premier tech store, 👨🏽‍💻we are your go-to for cutting-edge accessories and the latest tech trends (top notch smartphones, laptops, and gadgets.) Join our WhatsApp channel for exclusive deals!">
+    <meta name="description" content="Uganda's premier tech store for smartphones, laptops, and gadgets. Join our WhatsApp channel for exclusive deals!">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* ==== Base Styles ==== */
@@ -31,39 +30,56 @@
             line-height: 1.6;
         }
         
-        /* ==== Header ==== */
+        /* ==== Improved Header ==== */
         #header {
             background: var(--secondary);
             color: var(--light);
             padding: 1rem 2rem;
-            align-items: left;
-            justify-content: space-between;
-            position: -webkit-sticky;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            text-align: center;
         }
-         .me {
-             padding left: 5px;
-            width: 63px;
-            height: 63px; 
-            border-radius: 100px;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.685);
-            position: relative; /* Ensures the logo stays on top */
-            z-index: 2; /* Higher z-index to keep the logo above the text */
-            text-align: center; /* center the logo */
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .me {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        
+        .logo-container {
+            flex-grow: 1;
+            line-height: 1.2;
         }
         
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 0.5rem;
         }
         
         .logo span {
             color: var(--accent);
         }
         
-        /* ==== Hero Section ==== */
+        .tagline {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* === Hero Section === */
         .hero {
             text-align: center;
             padding: 4rem 2rem;
@@ -85,7 +101,7 @@
             margin: 0 auto 2rem;
         }
         
-        /* ==== CTA Buttons ==== */
+        /* === CTA Buttons === */
         .btn {
             display: inline-block;
             padding: 0.8rem 1.8rem;
@@ -116,7 +132,7 @@
             color: var(--secondary);
         }
         
-        /* ==== Features ==== */
+        /* === Features === */
         .features {
             padding: 3rem 2rem;
             text-align: center;
@@ -148,7 +164,7 @@
             margin-bottom: 1rem;
         }
         
-        /* ==== WhatsApp CTA ==== */
+        /* === WhatsApp CTA === */
         .whatsapp-cta {
             background: var(--primary);
             color: var(--light);
@@ -160,7 +176,7 @@
             margin-bottom: 1.5rem;
         }
         
-        /* ==== Countdown ==== */
+        /* === Countdown === */
         .countdown {
             background: var(--secondary);
             color: var(--light);
@@ -192,7 +208,137 @@
             font-weight: 700;
         }
         
-        /* ==== Footer ==== */
+        /* === Notify Form === */
+        #notify {
+            background: var(--gray);
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        /* === YouTube Section === */
+        .youtube-section {
+            background: var(--light);
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .youtube-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .youtube-title {
+            color: var(--secondary);
+            font-size: 1.8rem;
+        }
+        
+        .youtube-embed {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .youtube-embed iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .video-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .video-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+        
+        .video-thumbnail img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 3rem;
+            opacity: 0.8;
+        }
+        
+        .video-info {
+            padding: 1rem;
+            background: white;
+        }
+        
+        .video-title {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .video-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .yt-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            background: #FF0000;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s;
+        }
+        
+        .yt-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .subscribe-btn {
+            background: var(--secondary);
+        }
+
+        /* === Footer === */
         footer {
             background: var(--text);
             color: var(--light);
@@ -215,8 +361,19 @@
             color: var(--accent);
         }
         
-        /* ==== Mobile Responsiveness ==== */
+        /* === Mobile Responsiveness === */
         @media (max-width: 768px) {
+            #header {
+                flex-direction: column;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .header-content {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
             .hero h1 {
                 font-size: 2rem;
             }
@@ -232,15 +389,29 @@
             .timer span {
                 font-size: 1.5rem;
             }
+            
+            .video-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .youtube-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <!-- Improved Header -->
     <header id="header">
-        <a href="#"><img src="IMAGES/logo.svg" class="me" alt="Will's tech"></a>
-        <div class="logo">Will's<span>Tech</span></div>
-        <p>Elevate Your Lyfestyle With Authentic Tech </p>
+        <div class="header-content">
+            <img src="IMAGES/logo.svg" class="me" alt="Will's Tech Logo">
+            <div class="logo-container">
+                <div class="logo">Will's<span>Tech</span></div>
+                <p class="tagline">Elevate Your Lifestyle With Authentic Tech</p>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -257,8 +428,7 @@
             <a href="https://instagram.com/willstech.store"><i class="fab fa-instagram"></i></a>
             <a href="https://x.com/willstech_storeug"><i class="fab fa-twitter"></i></a>
             <a href="http://www.tiktok.com/@willstech.store"><i class="fab fa-tiktok"></i></a>
-    </div>
-   
+        </div>
     </section>
 
     <!-- Features -->
@@ -322,66 +492,59 @@
     </section>
 
     <!-- Email Signup -->
-        <!-- === HTML === -->
-<section id="notify" class="features" style="background: var(--gray); text-align: center; padding: 2rem 1rem;">
-  <h2>Get Notified When We Launch!</h2>
-  
-  <!-- Toggle Button -->
-  <button id="show-form-btn" class="btn btn-primary">
-    Notify Me at Launch
-  </button>
+    <section id="notify" class="features" style="background: var(--gray); text-align: center; padding: 2rem 1rem;">
+        <h2>Get Notified When We Launch!</h2>
+        
+        <button id="show-form-btn" class="btn btn-primary">
+            Notify Me at Launch
+        </button>
 
-  <!-- Google Form Container (Hidden by Default) -->
-  <div id="google-form-container" style="display: none; width: 100%; margin: 1rem auto;">
-<iframe 
-  src="https://docs.google.com/forms/d/e/1FAIpQLSfJbLXNxghRFZSjUhkgKzpMRBmf8rIak9Hk1e0W-c3ovrK2xQ/viewform?embedded=true&headers=true" 
-  width="100%" 
-  height="600"
-  frameborder="0" 
-  marginheight="0" 
-  marginwidth="0"
-  style="border: none; min-height: 600px; display: block;">
-  Loading...
-</iframe>
-    <button id="hide-form-btn" class="btn btn-outline" style="margin-top: 1rem;">
-      Close Form
-    </button>
-  </div>
-</section>
+        <div id="google-form-container" style="display: none; width: 100%; margin: 1rem auto;">
+            <iframe 
+                src="https://docs.google.com/forms/d/e/1FAIpQLSfJbLXNxghRFZSjUhkgKzpMRBmf8rIak9Hk1e0W-c3ovrK2xQ/viewform?embedded=true&headers=true" 
+                width="100%" 
+                height="600"
+                frameborder="0" 
+                marginheight="0" 
+                marginwidth="0"
+                style="border: none; min-height: 600px; display: block;">
+                Loading...
+            </iframe>
+            <button id="hide-form-btn" class="btn btn-outline" style="margin-top: 1rem;">
+                Close Form
+            </button>
+        </div>
+    </section>
 
-<!-- === JavaScript === -->
-<script>
-  document.getElementById("show-form-btn").addEventListener("click", function() {
-    document.getElementById("google-form-container").style.display = "block";
-    this.style.display = "none";
-  });
-
-  document.getElementById("hide-form-btn").addEventListener("click", function() {
-    document.getElementById("google-form-container").style.display = "none";
-    document.getElementById("show-form-btn").style.display = "inline-block";
-  });
-</script>
-
-<!-- === Critical CSS Fix === -->
-<style>
-  /* Force Google Form to show header/mobile compatibility */
-  iframe {
-    display: block !important; /* Override any hiding */
-    overflow: scroll !important; /* Fix mobile clipping */
-  }
-  
-  /* Mobile responsiveness */
-  @media (max-width: 768px) {
-  iframe {
-    min-height: 700px !important;
-    overflow-y: visible !important;
-  }
-}
-    iframe {
-      min-height: 800px !important; /* Extra space for mobile form */
-    }
-  }
-</style>
+    <!-- YouTube Section -->
+    <section class="youtube-section">
+        <div class="youtube-header">
+            <h2 class="youtube-title"><i class="fab fa-youtube" style="color: #FF0000;"></i> Tech Videos & Reviews</h2>
+            <a href="https://www.youtube.com/@Willstech.storeug" class="subscribe-btn yt-btn" target="_blank">
+                <i class="fas fa-bell"></i> Subscribe
+            </a>
+        </div>
+        
+        <div class="youtube-embed">
+            <iframe id="mainVideoPlayer" src="https://www.youtube.com/embed/BzD8yDQ8wAM?autoplay=0&rel=0&modestbranding=1" allowfullscreen></iframe>
+        </div>
+        
+        <div class="video-actions">
+            <a href="https://www.youtube.com/watch?v=BzD8yDQ8wAM&like=1" class="yt-btn" target="_blank">
+                <i class="fas fa-thumbs-up"></i> Like
+            </a>
+            <a href="https://www.youtube.com/watch?v=BzD8yDQ8wAM#comments" class="yt-btn" target="_blank">
+                <i class="fas fa-comment"></i> Comment
+            </a>
+        </div>
+        
+        <h3 style="margin: 2rem 0 1rem;">More Videos:</h3>
+        <div class="video-grid" id="videoGrid">
+            <div class="video-placeholder">
+                <i class="fas fa-spinner fa-spin"></i> Loading videos...
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -416,13 +579,83 @@
         // Update every second
         setInterval(updateCountdown, 1000);
         updateCountdown(); // Initial call
+    </script>
+
+    <!-- Form Toggle Script -->
+    <script>
+        document.getElementById("show-form-btn").addEventListener("click", function() {
+            document.getElementById("google-form-container").style.display = "block";
+            this.style.display = "none";
+        });
+
+        document.getElementById("hide-form-btn").addEventListener("click", function() {
+            document.getElementById("google-form-container").style.display = "none";
+            document.getElementById("show-form-btn").style.display = "inline-block";
+        });
+    </script>
+
+    <!-- YouTube API Script -->
+    <script>
+        // YouTube API Configuration
+        const YT_API_KEY = 'AIzaSyBnhvlEoMzX9A_DIq5Lks74m_S5CBL9jXU';
+        const YT_CHANNEL_ID = 'UCacibTVbVjRyCphqRnxLbOw';
         
-        // Simple form handler (replace with your backend in final version)
-        document.getElementById("notify-form").addEventListener("submit", function(e) {
-            e.preventDefault();
-            const email = e.target.querySelector("input").value;
-            alert(`Thanks! We'll notify you at ${email} when we launch.`);
-            e.target.reset();
+        document.addEventListener('DOMContentLoaded', function() {
+            // First get the channel's uploads playlist
+            async function loadYouTubeContent() {
+                try {
+                    const channelResponse = await fetch(
+                        `https://www.googleapis.com/youtube/v3/channels?key=${YT_API_KEY}&id=${YT_CHANNEL_ID}&part=contentDetails`
+                    );
+                    const channelData = await channelResponse.json();
+                    const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
+                    
+                    // Get videos from the uploads playlist
+                    const playlistResponse = await fetch(
+                        `https://www.googleapis.com/youtube/v3/playlistItems?key=${YT_API_KEY}&playlistId=${uploadsPlaylistId}&part=snippet&maxResults=6`
+                    );
+                    const playlistData = await playlistResponse.json();
+                    
+                    if (playlistData.items && playlistData.items.length > 0) {
+                        // Set main video player to the latest video
+                        const latestVideo = playlistData.items[0];
+                        const latestVideoId = latestVideo.snippet.resourceId.videoId;
+                        
+                        // Update like/comment links
+                        document.querySelector('.video-actions a:nth-child(1)').href = `https://www.youtube.com/watch?v=${latestVideoId}&like=1`;
+                        document.querySelector('.video-actions a:nth-child(2)').href = `https://www.youtube.com/watch?v=${latestVideoId}#comments`;
+                        
+                        // Display other videos
+                        const videoGrid = document.getElementById('videoGrid');
+                        videoGrid.innerHTML = '';
+                        
+                        // Start from 1 to skip the latest video (already shown)
+                        for (let i = 1; i < playlistData.items.length; i++) {
+                            const video = playlistData.items[i];
+                            const videoId = video.snippet.resourceId.videoId;
+                            
+                            videoGrid.innerHTML += `
+                                <div class="video-item">
+                                    <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank">
+                                        <div class="video-thumbnail">
+                                            <img src="${video.snippet.thumbnails.medium.url}" alt="${video.snippet.title}">
+                                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                                        </div>
+                                        <div class="video-info">
+                                            <h3 class="video-title">${video.snippet.title}</h3>
+                                        </div>
+                                    </a>
+                                </div>
+                            `;
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error loading YouTube content:', error);
+                    document.getElementById('videoGrid').innerHTML = '<p>Error loading videos. Please try again later.</p>';
+                }
+            }
+            
+            loadYouTubeContent();
         });
     </script>
 </body>
