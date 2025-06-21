@@ -29,6 +29,9 @@
             color: var(--text);
             line-height: 1.6;
         }
+        html {
+            scroll-behavior: smooth;
+        }
         
 /* === Professional Modern Header === */
 #header {
@@ -439,6 +442,45 @@
         .social-links a:hover {
             color: var(--accent);
         }
+
+        /* Add these styles to your CSS */
+.video-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mute-toggle {
+    background: rgba(0, 0, 0, 0.7);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.mute-toggle:hover {
+    background: rgba(0, 0, 0, 0.9);
+    transform: scale(1.1);
+}
+
+.mute-toggle i {
+    font-size: 16px;
+}
+
+/* Style for when unmuted */
+.mute-toggle.unmuted {
+    background: rgba(255, 0, 0, 0.7);
+}
+
+.mute-toggle.unmuted:hover {
+    background: rgba(255, 0, 0, 0.9);
+}
         
         /* === Mobile Responsiveness === */
         @media (max-width: 768px) {
@@ -597,22 +639,27 @@
         </div>
     </section>
 
-    <!-- YouTube Section -->
+<!-- YouTube Section -->
 <section class="youtube-section">
     <div class="youtube-header">
         <h2 class="youtube-title"><i class="fab fa-youtube" style="color: #FF0000;"></i> Tech Videos & Reviews</h2>
-        <a href="https://www.youtube.com/@Willstech.storeug" class="subscribe-btn yt-btn" target="_blank">
-            <i class="fas fa-bell"></i> Subscribe
-        </a>
+        <div class="video-controls">
+            <button id="muteToggle" class="mute-toggle">
+                <i class="fas fa-volume-mute"></i>
+            </button>
+            <a href="https://www.youtube.com/@Willstech.storeug" class="subscribe-btn yt-btn" target="_blank">
+                <i class="fas fa-bell"></i> Subscribe
+            </a>
+        </div>
     </div>
     
     <div class="youtube-embed">
         <iframe 
-    id="mainVideoPlayer"
-    src="https://www.youtube.com/embed/videoseries?list=PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV&autoplay=0&mute=1&loop=1&enablejsapi=1&playsinline=1" 
-    frameborder="0" 
-    allowfullscreen
-    allow="autoplay">
+            id="mainVideoPlayer"
+            src="https://www.youtube.com/embed/videoseries?list=PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV&autoplay=0&mute=1&loop=1&enablejsapi=1&playsinline=1" 
+            frameborder="0" 
+            allowfullscreen
+            allow="autoplay">
         </iframe>
     </div>
     
@@ -894,6 +941,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch playlist videos
     fetchPlaylistVideos();
 });
+
+    // Add this to your YouTube API script
+let isMuted = true; // Starts muted
+
+function onPlayerReady(event) {
+    // Existing code...
+    setupMuteToggle();
+}
+
+function setupMuteToggle() {
+    const muteToggle = document.getElementById('muteToggle');
+    const muteIcon = muteToggle.querySelector('i');
+    
+    muteToggle.addEventListener('click', function() {
+        if (isMuted) {
+            // Unmute
+            player.unMute();
+            muteIcon.classList.remove('fa-volume-mute');
+            muteIcon.classList.add('fa-volume-up');
+            muteToggle.classList.add('unmuted');
+            isMuted = false;
+        } else {
+            // Mute
+            player.mute();
+            muteIcon.classList.remove('fa-volume-up');
+            muteIcon.classList.add('fa-volume-mute');
+            muteToggle.classList.remove('unmuted');
+            isMuted = true;
+        }
+    });
+    
+    // Initialize icon
+    muteIcon.classList.add('fa-volume-mute');
+}
             </script>
 
     <!-- Footer -->
