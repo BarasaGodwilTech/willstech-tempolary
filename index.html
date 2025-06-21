@@ -827,6 +827,10 @@
 
 <script>
 // YouTube API setup - Consolidated version
+    // Add this to your YouTube API script
+let isMuted = true; // Starts muted
+
+function onPlayerReady(event) {
 document.addEventListener('DOMContentLoaded', function() {
     const YT_API_KEY = 'AIzaSyBnhvlEoMzX9A_DIq5Lks74m_S5CBL9jXU';
     const PLAYLIST_ID = 'PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV';
@@ -942,10 +946,7 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchPlaylistVideos();
 });
 
-    // Add this to your YouTube API script
-let isMuted = true; // Starts muted
-
-function onPlayerReady(event) {
+    
     // Existing code...
     setupMuteToggle();
 }
