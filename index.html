@@ -78,6 +78,71 @@
             font-size: 0.9rem;
             opacity: 0.9;
         }
+        /* ==== Improved Header ==== */
+#header {
+    background: var(--secondary);
+    color: var(--light);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    line-height: 1.2;
+}
+
+.logo-part {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.me {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tagline {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    #header {
+        padding: 0.8rem 1rem;
+    }
+    
+    .logo-part {
+        font-size: 1.5rem;
+    }
+    
+    .me {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .tagline {
+        font-size: 0.8rem;
+    }
+        }
 
         /* === Hero Section === */
         .hero {
@@ -404,14 +469,16 @@
 </head>
 <body>
     <!-- Improved Header -->
+    
     <header id="header">
-        <div class="header-content">
+    <div class="header-content">
+        <div class="logo-container">
+            <span class="logo-part">Will's</span>
             <img src="IMAGES/logo.svg" class="me" alt="Will's Tech Logo">
-            <div class="logo-container">
-                <div class="logo">Will's<span>Tech</span></div>
-                <p class="tagline">Elevate Your Lifestyle With Authentic Tech</p>
-            </div>
+            <span class="logo-part">Tech</span>
         </div>
+        <p class="tagline">Elevate Your Lifestyle With Authentic Tech</p>
+    </div>
     </header>
 
     <!-- Hero Section -->
