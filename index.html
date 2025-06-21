@@ -517,39 +517,89 @@
     </section>
 
     <!-- YouTube Section -->
-    <section class="youtube-section">
-        <div class="youtube-header">
-            <h2 class="youtube-title"><i class="fab fa-youtube" style="color: #FF0000;"></i> Tech Videos & Reviews</h2>
-            <a href="https://www.youtube.com/@Willstech.storeug" class="subscribe-btn yt-btn" target="_blank">
-                <i class="fas fa-bell"></i> Subscribe
-            </a>
+<section class="youtube-section">
+    <div class="youtube-header">
+        <h2 class="youtube-title"><i class="fab fa-youtube" style="color: #FF0000;"></i> Tech Videos & Reviews</h2>
+        <a href="https://www.youtube.com/@Willstech.storeug" class="subscribe-btn yt-btn" target="_blank">
+            <i class="fas fa-bell"></i> Subscribe
+        </a>
+    </div>
+    
+    <div class="youtube-embed">
+        <iframe 
+            id="mainVideoPlayer"
+            src="https://www.youtube.com/embed/videoseries?list=PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV&autoplay=1&loop=1&enablejsapi=1" 
+            frameborder="0" 
+            allowfullscreen>
+        </iframe>
+    </div>
+    
+    <div class="video-actions">
+        <a id="likeBtn" href="#" class="yt-btn" target="_blank">
+            <i class="fas fa-thumbs-up"></i> Like
+        </a>
+        <a id="commentBtn" href="#" class="yt-btn" target="_blank">
+            <i class="fas fa-comment"></i> Comment
+        </a>
+    </div>
+    
+    <h3 style="margin: 2rem 0 1rem;">More Videos:</h3>
+    <div class="video-grid" id="videoGrid">
+        <div class="video-placeholder">
+            <i class="fas fa-spinner fa-spin"></i> Loading videos...
         </div>
-        
-        <div class="youtube-embed">
-            <iframe 
-  src="https://www.youtube.com/embed/videoseries?list=PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV&autoplay=1&loop=1" 
-  frameborder="0" 
-  allowfullscreen>
-            </iframe>
-            
-        </div>
-        
-        <div class="video-actions">
-            <a href="https://www.youtube.com/watch?v=BzD8yDQ8wAM&like=1" class="yt-btn" target="_blank">
-                <i class="fas fa-thumbs-up"></i> Like
-            </a>
-            <a href="https://www.youtube.com/watch?v=BzD8yDQ8wAM#comments" class="yt-btn" target="_blank">
-                <i class="fas fa-comment"></i> Comment
-            </a>
-        </div>
-        
-        <h3 style="margin: 2rem 0 1rem;">More Videos:</h3>
-        <div class="video-grid" id="videoGrid">
-            <div class="video-placeholder">
-                <i class="fas fa-spinner fa-spin"></i> Loading videos...
-            </div>
-        </div>
-    </section>
+    </div>
+</section>
+
+<script>
+// YouTube API setup
+document.addEventListener('DOMContentLoaded', function() {
+    const player = document.getElementById('mainVideoPlayer');
+    const likeBtn = document.getElementById('likeBtn');
+    const commentBtn = document.getElementById('commentBtn');
+    let currentVideoId = '';
+    
+    // Function to update action buttons based on current video
+    function updateActionButtons(videoId) {
+        currentVideoId = videoId;
+        likeBtn.href = `https://www.youtube.com/watch?v=${videoId}&like=1`;
+        commentBtn.href = `https://www.youtube.com/watch?v=${videoId}#comments`;
+    }
+    
+    // Listen for YouTube player state changes
+    window.onYouTubeIframeAPIReady = function() {
+        const ytPlayer = new YT.Player('mainVideoPlayer', {
+            events: {
+                'onStateChange': onPlayerStateChange,
+                'onReady': onPlayerReady
+            }
+        });
+    };
+    
+    function onPlayerReady(event) {
+        // Get initial video ID when player is ready
+        const videoData = event.target.getVideoData();
+        updateActionButtons(videoData.video_id);
+    }
+    
+    function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+            // Update buttons when new video starts playing
+            const videoData = event.target.getVideoData();
+            updateActionButtons(videoData.video_id);
+        }
+    }
+    
+    // Load YouTube API
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+    // Load more videos (you can keep your existing implementation here)
+    // ...
+});
+        </script>
 
     <!-- Footer -->
     <footer>
