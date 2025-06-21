@@ -542,17 +542,30 @@
             <i class="fas fa-comment"></i> Comment
         </a>
     </div>
-    
+
+    <div id="recommended-videos">
     <h3 style="margin: 2rem 0 1rem;">More Videos:</h3>
     <div class="horizontal-video-grid" id="videoGrid">
         <div class="video-placeholder">
             <i class="fas fa-spinner fa-spin"></i> Loading videos...
+             </div>
         </div>
     </div>
 </section>
 
 <style>
     /* Horizontal video grid styling */
+    #recommended-videos {
+    font-size: 0.85em; /* Scales all text */
+}
+
+#recommended-videos .horizontal-video-grid .video-item {
+    flex: 0 0 200px; /* Slightly smaller than main */
+}
+
+#recommended-videos .horizontal-video-grid .video-thumbnail {
+    padding-top: 50%; /* Slightly squarer aspect */
+    }
     .horizontal-video-grid {
         display: flex;
         overflow-x: auto;
