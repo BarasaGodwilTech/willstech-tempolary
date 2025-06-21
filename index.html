@@ -544,31 +544,165 @@
     </div>
     
     <h3 style="margin: 2rem 0 1rem;">More Videos:</h3>
-    <div class="video-grid" id="videoGrid">
+    <div class="horizontal-video-grid" id="videoGrid">
         <div class="video-placeholder">
             <i class="fas fa-spinner fa-spin"></i> Loading videos...
         </div>
     </div>
 </section>
 
+<style>
+    /* Horizontal video grid styling */
+    .horizontal-video-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 15px;
+        padding-bottom: 10px;
+        scrollbar-width: thin;
+        scrollbar-color: #888 transparent;
+    }
+    
+    .horizontal-video-grid::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .horizontal-video-grid::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 3px;
+    }
+    
+    .horizontal-video-grid .video-item {
+        flex: 0 0 250px;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+    }
+    
+    .horizontal-video-grid .video-item:hover {
+        transform: translateY(-5px);
+    }
+    
+    .horizontal-video-grid .video-thumbnail {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 aspect ratio */
+        background-color: #000;
+    }
+    
+    .horizontal-video-grid .video-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .horizontal-video-grid .video-info {
+        padding: 10px;
+        background: #fff;
+    }
+    
+    .horizontal-video-grid .video-title {
+        font-size: 14px;
+        margin: 0 0 5px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    @media (max-width: 768px) {
+        .horizontal-video-grid .video-item {
+            flex: 0 0 200px;
+        }
+    }
+</style>
+
 <script>
-// YouTube API setup
+// YouTube API setup - Consolidated version
 document.addEventListener('DOMContentLoaded', function() {
+    const YT_API_KEY = 'AIzaSyBnhvlEoMzX9A_DIq5Lks74m_S5CBL9jXU';
+    const PLAYLIST_ID = 'PL3UeMmSqW6uaESNSPkwr-RMrZJNiOUmYV';
     const player = document.getElementById('mainVideoPlayer');
     const likeBtn = document.getElementById('likeBtn');
     const commentBtn = document.getElementById('commentBtn');
+    const videoGrid = document.getElementById('videoGrid');
     let currentVideoId = '';
+    let playlistVideos = [];
     
-    // Function to update action buttons based on current video
+    // Function to update action buttons
     function updateActionButtons(videoId) {
         currentVideoId = videoId;
         likeBtn.href = `https://www.youtube.com/watch?v=${videoId}&like=1`;
         commentBtn.href = `https://www.youtube.com/watch?v=${videoId}#comments`;
+        updateRecommendedVideos();
     }
     
-    // Listen for YouTube player state changes
+    // Function to update recommended videos (excluding current one)
+    function updateRecommendedVideos() {
+        const otherVideos = playlistVideos.filter(video => video.id !== currentVideoId);
+        renderVideoGrid(otherVideos);
+    }
+    
+    // Function to render video grid
+    function renderVideoGrid(videos) {
+        if (videos.length === 0) return;
+        
+        videoGrid.innerHTML = '';
+        videos.forEach(video => {
+            const videoItem = document.createElement('div');
+            videoItem.className = 'video-item';
+            videoItem.innerHTML = `
+                <a href="https://www.youtube.com/watch?v=${video.id}" target="_blank">
+                    <div class="video-thumbnail">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">${video.title}</h3>
+                    </div>
+                </a>
+            `;
+            videoGrid.appendChild(videoItem);
+        });
+    }
+    
+    // Function to fetch playlist videos
+    async function fetchPlaylistVideos() {
+        try {
+            let nextPageToken = '';
+            let allVideos = [];
+            
+            do {
+                const response = await fetch(
+                    `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=${PLAYLIST_ID}&key=${YT_API_KEY}&pageToken=${nextPageToken}`
+                );
+                const data = await response.json();
+                
+                allVideos = allVideos.concat(data.items.map(item => ({
+                    id: item.snippet.resourceId.videoId,
+                    title: item.snippet.title,
+                    thumbnail: item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default.url
+                })));
+                
+                nextPageToken = data.nextPageToken || '';
+            } while (nextPageToken);
+            
+            playlistVideos = allVideos;
+            if (playlistVideos.length > 0) {
+                // Set initial video (first in playlist)
+                updateActionButtons(playlistVideos[0].id);
+            }
+        } catch (error) {
+            console.error('Error fetching playlist videos:', error);
+            videoGrid.innerHTML = '<div class="error-message">Failed to load videos. Please try again later.</div>';
+        }
+    }
+    
+    // YouTube Player API functions
     window.onYouTubeIframeAPIReady = function() {
-        const ytPlayer = new YT.Player('mainVideoPlayer', {
+        new YT.Player('mainVideoPlayer', {
             events: {
                 'onStateChange': onPlayerStateChange,
                 'onReady': onPlayerReady
@@ -577,16 +711,18 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     function onPlayerReady(event) {
-        // Get initial video ID when player is ready
         const videoData = event.target.getVideoData();
-        updateActionButtons(videoData.video_id);
+        if (videoData.video_id) {
+            updateActionButtons(videoData.video_id);
+        }
     }
     
     function onPlayerStateChange(event) {
         if (event.data === YT.PlayerState.PLAYING) {
-            // Update buttons when new video starts playing
             const videoData = event.target.getVideoData();
-            updateActionButtons(videoData.video_id);
+            if (videoData.video_id && videoData.video_id !== currentVideoId) {
+                updateActionButtons(videoData.video_id);
+            }
         }
     }
     
@@ -596,10 +732,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
     
-    // Load more videos (you can keep your existing implementation here)
-    // ...
+    // Fetch playlist videos
+    fetchPlaylistVideos();
 });
-        </script>
+            </script>
 
     <!-- Footer -->
     <footer>
