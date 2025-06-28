@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redirecting to WhatsApp Channel...</title>
+    <!-- Primary WhatsApp deep link -->
+    <meta http-equiv="refresh" content="0; url=whatsapp://channel/?id=0029VaJO5e1LY6d9EtRSHg3A" />
+    <!-- Fallback if WhatsApp not installed -->
+    <script>
+        window.location.href = "whatsapp://channel/?id=0029VaJO5e1LY6d9EtRSHg3A";
+        setTimeout(function() {
+            // Fallback to web URL after 0.5 seconds (if WhatsApp fails)
+            window.location.href = "https://whatsapp.com/channel/0029VaJO5e1LY6d9EtRSHg3A";
+        }, 500);
+    </script>
+</head>
+<body>
+    <p>If you are not redirected, <a href="https://whatsapp.com/channel/0029VaJO5e1LY6d9EtRSHg3A">click here</a>.</p>
+</body>
+</html>
