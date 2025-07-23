@@ -1018,12 +1018,13 @@ footer {
   height: 24px;
   width: auto;
   opacity: 0.9;
-  transition: var(--transition);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin: 0 8px;
 }
 
 .mobile-money-icon:hover {
   opacity: 1;
-  transform: translateY(-2px);
+  transform: scale(1.1);
 }
 
 .footer-links h3 {
