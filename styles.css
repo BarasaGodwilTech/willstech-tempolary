@@ -1000,6 +1000,7 @@ footer {
   align-items: center;
   gap: 1rem;
   margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
 .payment-methods i {
@@ -1007,11 +1008,22 @@ footer {
   opacity: 0.8;
 }
 
-.payment-methods span {
-  font-size: 0.9rem;
-  opacity: 0.8;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+.mobile-money {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.mobile-money-icon {
+  height: 24px;
+  width: auto;
+  opacity: 0.9;
+  transition: var(--transition);
+}
+
+.mobile-money-icon:hover {
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 .footer-links h3 {
