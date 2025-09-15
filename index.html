@@ -13,18 +13,18 @@
     <meta name="author" content="Will's Tech Store">
     
     <!-- Favicons (Must be in root folder) -->
-<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="apple-mobile-web-app-title" content="Will's Tech Store " />
-<link rel="manifest" href="/site.webmanifest" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Will's Tech Store " />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- Open Graph (Facebook/LinkedIn) -->
     <meta property="og:title" content="Will's Tech Store | Premium Gadgets & Tech in Uganda">
     <meta property="og:description" content="Get authentic smartphones, laptops & gadgets from Uganda's trusted tech store for 100% authentic smartphones, laptops & gadgets from competitive brands. Elevate Your Lifestyle With Authentic Tech. Free delivery around Kampala and Mbale. WhatsApp: +256 751 924 844!">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://https://BarasaGodwilTech.github.io/willstech-tempolary/">
+    <meta property="og:url" content="https://BarasaGodwilTech.github.io/willstech-tempolary/">
     <meta property="og:image" content="https://BarasaGodwilTech.github.io/willstech-tempolary/IMAGES/social-share.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -44,17 +44,34 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
-    <body>
+<body>
+    <!-- Page Loader -->
+    <div id="pageLoader" class="page-loader">
+        <div class="loader-content">
+            <div class="logo-loader">
+                <span class="loader-text will-text">WILL'S</span>
+                <div class="loader-icon">
+                    <i class="fas fa-laptop"></i>
+                </div>
+                <span class="loader-text tech-text">TECH</span>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Loading amazing tech experience...</p>
+        </div>
+    </div>
+
     <!-- Header -->
     <header id="header">
         <div class="header-content">
-            <a href="#notify" class="logo-combo">
+            <a href="#hero" class="logo-combo">
                 <span class="logo-text will-text">WILL'S</span>
                 <div class="logo-image-wrapper">
-                    <img src="IMAGES/logo.svg" class="logo-image" alt="Will's Tech Logo">
+                    <img src="IMAGES/logo.svg" class="logo-image" alt="Will's Tech Logo" width="50" height="50">
                 </div>
                 <span class="logo-text tech-text">TECH</span>
             </a>
@@ -63,7 +80,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="hero" class="hero">
         <div class="hero-content">
             <h1>Your Ultimate Online Tech Store Is Coming Soon!</h1>
             <p>We're working hard to bring you the ultimate tech shopping experience, delivering authentic and top-notch technologies and innovation to your doorstep without lifting a foot. Uganda, are you ready? Join our WhatsApp channel for exclusive early-bird deals!</p>
@@ -81,33 +98,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Loading Animation -->
-    <div id="pageLoader" class="page-loader">
-        <div class="loader-content">
-            <div class="logo-loader">
-                <span class="loader-text will-text">WILL'S</span>
-                <div class="loader-icon">
-                    <i class="fas fa-laptop"></i>
-                </div>
-                <span class="loader-text tech-text">TECH</span>
-            </div>
-            <div class="loading-bar">
-                <div class="loading-progress"></div>
-            </div>
-            <p class="loading-text">Loading amazing tech experience...</p>
-        </div>
-    </div>
-
-    <!-- Floating Action Button -->
-    <div class="floating-actions">
-        <button id="scrollToTop" class="fab-button" aria-label="Scroll to top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        <a href="https://wa.me/256751924844" class="fab-button whatsapp-fab" aria-label="Contact on WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-    </div>
 
     <!-- Statistics Section -->
     <section class="stats-section">
@@ -305,64 +295,73 @@
     </section>
 
     <!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="logo">Will's<span>Tech</span></div>
-        <p class="footer-tagline">Premium tech, delivered with care. Uganda's trusted source for authentic technology products.</p>
-        <div class="payment-methods">
-  <i class="fab fa-cc-visa"></i>
-  <i class="fab fa-cc-mastercard"></i>
-  <img src="IMAGES/momo-logo.png" alt="MTN Mobile Money" class="mobile-money-icon" loading="lazy">
-  <img src="IMAGES/airtel-money-logo.png" alt="Airtel Money" class="mobile-money-icon" loading="lazy">
-</div>
-</div>
-      </div>
-      
-      <div class="footer-links">
-        <h3>Products</h3>
-        <ul>
-          <li><a href="#">Smartphones</a></li>
-          <li><a href="#">Laptops</a></li>
-          <li><a href="#">Accessories</a></li>
-          <li><a href="#">Gaming</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h3>Support</h3>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Warranty</a></li>
-          <li><a href="#">Repairs</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-links">
-        <h3>Company</h3>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-        </ul>
-      </div>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Will's<span>Tech</span></div>
+                    <p class="footer-tagline">Premium tech, delivered with care. Uganda's trusted source for authentic technology products.</p>
+                    <div class="payment-methods">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <img src="IMAGES/momo-logo.png" alt="MTN Mobile Money" class="mobile-money-icon" loading="lazy" width="40" height="24">
+                        <img src="IMAGES/airtel-money-logo.png" alt="Airtel Money" class="mobile-money-icon" loading="lazy" width="40" height="24">
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Accessories</a></li>
+                        <li><a href="#">Gaming</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Warranty</a></li>
+                        <li><a href="#">Repairs</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://instagram.com/willstech.store" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/willstech_store" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="https://www.tiktok.com/@willstech.store" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+                <p class="copyright">&copy; 2025 Will's Tech Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Action Button -->
+    <div class="floating-actions">
+        <button id="scrollToTop" class="fab-button" aria-label="Scroll to top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <a href="https://wa.me/256751924844" class="fab-button whatsapp-fab" aria-label="Contact on WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+        </a>
     </div>
-    
-    <div class="footer-bottom">
-      <div class="social-links">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="https://instagram.com/willstech.store" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/willstech_store" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        <a href="https://www.tiktok.com/@willstech.store" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-      </div>
-      <p class="copyright">&copy; 2025 Will's Tech Store. All rights reserved.</p>
-    </div>
-  </div>
-</footer>
 
     <script src="script.js"></script>
 </body>
-    </html>
+</html>
